@@ -38,7 +38,7 @@ jobs:
           uses: actions/upload-artifact@v3
           with:
             name: Build
-            path: dist
+            path: /dist
             
         - name: Deploy to GitHub Pages
           id: deployment
