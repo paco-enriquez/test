@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
         run:
-            working-directory: ./scripts
+            working-directory: ./app
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
