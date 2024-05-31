@@ -8,31 +8,34 @@ permissions:
     pages: write
     id-token: write
 
+defaults:
+    run:
+      working-directory: app
+     
+
 jobs:
     build:
-        concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
-        runs-on: ubuntu-latest
-   
-
-        defaults:
-            run:
-                working-directory: app
-        steps:
-            - name: Checkout 🛎️
-              uses: actions/checkout@v4
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout 🛎️
+          uses: actions/checkout@v4
     
-            - name: Setup node
-              uses: actions/setup-node@v4
-              with:
-                node-version: '20.x'
-                registry-url: 'https://registry.npmjs.org'
+        - name: Setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: '20.x'
+            registry-url: 'https://registry.npmjs.org'
         
-            - run: npm ci
-            - run: npm run build
+        - run: npm ci
+        - run: npm run build
 
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
-            
+        - name: Setup Pages
+          uses: actions/configure-pages@v5
+    
+    deploy:
+          needs: build
+          runs-on: ubuntu-latest
+          steps: 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
