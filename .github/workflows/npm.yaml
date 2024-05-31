@@ -31,10 +31,7 @@ jobs:
         - run: npm run build
 
         - name: List contents of dist folder
-          run: ls
-        
-        - name: Check current directory
-          run: pwd
+          run: ls -l dist
 
         - name: Setup Pages
           uses: actions/configure-pages@v5
