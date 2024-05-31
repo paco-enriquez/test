@@ -30,15 +30,12 @@ jobs:
         - run: npm ci
         - run: npm run build
 
-        - name: List contents of dist folder
-          run: ls -l dist
-
         - name: Setup Pages
           uses: actions/configure-pages@v5
     
     
         - name: Upload artifact
-          uses: actions/upload-pages-artifact@v3
+          uses: actions/upload-artifact@v3
           with:
             name: Build
             path: dist
